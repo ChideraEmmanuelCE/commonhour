@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1b39e5">
+  <meta name="description" content="Find a meeting time across time zones. Compare available hours, share a plan, and download a calendar event. Free, open source, and private by default.">
+  <meta name="color-scheme" content="light">
+  <title>Commonhour — a good time for everyone</title>
+  <link rel="icon" type="image/svg+xml" href="./icons/favicon.svg">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./css/styles.css">
+  <script type="module" src="./js/app.js"></script>
+</head>
+<body>
+  <a href="#planner" class="skip-link">Skip to meeting planner</a>
+  <svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c5 5 5 13 0 18-5-5-5-13 0-18Z"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path d="m14 6-6 6 6 6"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="m10 6 6 6-6 6"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><path d="m15 5 4 4M4 20l5-1L20 8a2.8 2.8 0 0 0-4-4L5 15l-1 5Z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M8 3v4M16 3v4M4 11h16m-10 5 2 2 4-4"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="m10 13 4-4m-6 5-2 2a3.5 3.5 0 0 0 5 5l4-4a3.5 3.5 0 0 0 0-5M9 12a3.5 3.5 0 0 1 0-5l4-4a3.5 3.5 0 0 1 5 5l-2 2"/></symbol>
+    <symbol id="i-save" viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4V3Z"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z"/><path d="m8 12 3 3 5-5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H4v13h4"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3m2-16a3 3 0 0 1 0 6m4 10v-3a6 6 0 0 0-3-5"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7M14 10v7"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></symbol>
+  </svg>
+
+  <div class="app-shell">
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Commonhour home"><svg class="brand-mark" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="10" fill="currentColor"/><circle cx="14" cy="18" r="8" fill="none" stroke="white" stroke-width="2"/><circle cx="22" cy="18" r="8" fill="none" stroke="white" stroke-width="2"/></svg><span>commonhour<span class="brand-period">.</span></span></a>
+      <nav aria-label="Main navigation" class="main-nav">
+        <a href="#planner" class="nav-link active" aria-current="page">Planner</a>
+        <button class="nav-link" id="open-groups">Saved groups <span id="group-count" class="count" hidden>0</span></button>
+        <button class="nav-link" id="open-guide">How it works</button>
+      </nav>
+      <div class="header-actions"><button id="install-app" class="button button-small button-quiet" hidden>Install app</button><span class="privacy-label"><svg class="icon"><use href="#i-shield"/></svg>No sign-up</span></div>
+    </header>
+
+    <main id="planner" tabindex="-1">
+      <div class="page-intro">
+        <div><p class="eyebrow">LESS TIME-ZONE MATH. MORE TIME TOGETHER.</p><h1>A good time.<br><span>For everyone.</span></h1><p class="intro-copy">Find your shared hours, wherever you are.</p></div>
+        <button class="local-clock" id="go-now" title="Set the planner to the current time"><span class="clock-glyph"><svg class="icon"><use href="#i-globe"/></svg></span><span><span class="local-clock-label">YOUR LOCAL TIME</span><strong id="live-clock">--:--</strong><span id="local-zone">Your time zone</span></span></button>
+      </div>
+
+      <div id="app-notice" class="notice" role="status" hidden></div>
+      <div class="workspace">
+        <div class="planning-column">
+          <section class="planner-panel panel" aria-labelledby="locations-heading">
+            <div class="settings-bar">
+              <div class="field date-field"><label for="meeting-date">Meeting date</label><div class="date-control"><button class="icon-button" id="previous-day" aria-label="Previous day"><svg class="icon"><use href="#i-left"/></svg></button><input id="meeting-date" type="date" min="2000-01-01" max="2100-12-31" required><button class="icon-button" id="next-day" aria-label="Next day"><svg class="icon"><use href="#i-right"/></svg></button></div></div>
+              <div class="field duration-field"><label for="duration">Duration</label><select id="duration"><option value="15">15 minutes</option><option value="30" selected>30 minutes</option><option value="45">45 minutes</option><option value="60">1 hour</option><option value="90">1.5 hours</option><option value="120">2 hours</option></select></div>
+            </div>
+            <div class="time-controller">
+              <div class="controller-heading"><div><label class="field-label" for="reference-zone">Time shown in</label><select id="reference-zone" class="reference-select" aria-label="Reference time zone"></select></div><div class="time-format" role="group" aria-label="Time format"><button data-format="12" aria-pressed="false">12h</button><button data-format="24" aria-pressed="true">24h</button></div></div>
+              <div class="selected-time-control"><div class="field"><label for="start-time">Start time</label><input id="start-time" type="time" step="900" value="14:00" required></div><span class="selection-hint" id="slider-hint">Move the slider to compare local times.</span></div>
+              <div class="slider-wrapper"><input type="range" id="time-slider" min="0" max="95" value="56" step="1" aria-label="Meeting start time"><div class="slider-labels" aria-hidden="true"><span id="first-hour">00:00</span><span id="middle-hour">12:00</span><span id="last-hour">23:45</span></div></div>
+              <div class="field occurrence-field" id="occurrence-wrap" hidden><label for="occurrence">This clock time occurs twice</label><select id="occurrence"><option value="0">First occurrence</option><option value="1">Second occurrence</option></select></div>
+              <p class="inline-error" id="time-error" role="status" hidden></p>
+            </div>
+
+            <div class="locations-heading"><div><h2 id="locations-heading">Everyone’s local time</h2><p id="people-count">3 locations · 1 shared moment</p></div><button class="button button-add" id="add-location"><svg class="icon"><use href="#i-plus"/></svg><span>Add location</span></button></div>
+            <div class="legend" aria-label="Timeline legend"><span><i class="legend-dot good"></i>Available</span><span><i class="legend-dot outside"></i>Outside hours</span><span><i class="legend-dot night"></i>Late / early</span></div>
+            <div id="people-list" class="people-list"></div>
+            <div class="panel-bottom"><p><svg class="icon"><use href="#i-edit"/></svg>Edit a location to set its available hours.</p><button id="save-group" class="text-button"><svg class="icon"><use href="#i-save"/></svg>Save group</button></div>
+          </section>
+
+          <section class="suggestions-panel" aria-labelledby="suggestions-heading"><div class="section-heading"><div><h2 id="suggestions-heading">Your common hours</h2><p id="suggestion-description">A few good places to start.</p></div><span class="section-icon"><svg class="icon"><use href="#i-sun"/></svg></span></div><div class="suggestion-grid" id="suggestions"></div></section>
+        </div>
+
+        <aside class="summary-column" aria-label="Selected meeting">
+          <section class="meeting-card">
+            <div class="meeting-card-top"><span class="eyebrow">YOUR MEETING</span><svg class="icon"><use href="#i-calendar"/></svg></div>
+            <div class="field meeting-title-field"><label for="meeting-title">Meeting name</label><input id="meeting-title" maxlength="100" value="Team catch-up" placeholder="Give your meeting a name"></div>
+            <div class="big-time" id="summary-time">14:00</div><p class="summary-zone" id="summary-zone">Reference time zone</p><p class="summary-date" id="summary-date">Choose your date</p>
+            <div class="meeting-status" id="meeting-status"><svg class="icon"><use href="#i-check"/></svg><span>Checking available hours</span></div>
+            <div class="summary-people" id="summary-people"></div>
+            <details class="location-details"><summary>Meeting link or place <span class="optional">optional</span></summary><label for="meeting-location" class="sr-only">Meeting link or place</label><input id="meeting-location" type="text" maxlength="300" placeholder="Paste a call link or enter a place"></details>
+            <button class="button button-share" id="share-plan"><svg class="icon"><use href="#i-link"/></svg>Share this plan</button>
+            <button class="button button-calendar" id="download-calendar"><svg class="icon"><use href="#i-calendar"/></svg>Download calendar event</button>
+            <button class="copy-summary" id="copy-summary"><svg class="icon"><use href="#i-copy"/></svg>Copy meeting details</button>
+          </section>
+          <div class="private-note"><svg class="icon"><use href="#i-shield"/></svg><p><strong>Your plans stay with you.</strong><br>Saved in this browser. No accounts, tracking, or calendar access.</p></div>
+        </aside>
+      </div>
+      <noscript><div class="notice">Commonhour needs JavaScript to compare time zones. Enable it in your browser and reload this page.</div></noscript>
+    </main>
+
+    <footer class="site-footer"><p>Different places. One common hour.</p><div><span id="connection-label">Free &amp; open source</span><span class="footer-divider">/</span><button class="text-button" id="open-about">MIT License</button></div></footer>
+  </div>
+  <dialog id="modal" aria-labelledby="modal-title"><div class="dialog-head"><h2 id="modal-title">Commonhour</h2><button class="icon-button" id="close-modal" aria-label="Close dialog"><svg class="icon"><use href="#i-close"/></svg></button></div><div id="modal-content" class="dialog-content"></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>
