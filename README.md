@@ -170,3 +170,7 @@ JavaScript time-zone formatting: https://developer.mozilla.org/en-US/docs/Web/Ja
 ## License
 
 MIT © 2026 Chidera Emmanuel Okpala. See `LICENSE`.
+
+## Work with the creator
+
+Commonhour is free and open source under the MIT License. For a separately scoped custom web application, website improvement or development task, see [Chidera Emmanuel Okpala’s portfolio](https://my-portfolio-ce.netlify.app) and [development services](https://my-portfolio-ce.netlify.app/services.html). Custom development is quoted separately and is not required to use or contribute to Commonhour.
